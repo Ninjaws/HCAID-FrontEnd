@@ -32,7 +32,7 @@ dataset_selectedfeatures = dataset.filter(items=['class', 'odor', 'bruises', 'po
 pd.set_option('display.max_columns', None)
 
 
-def test(col_name):
+def apply_onehotencoding_tocolumn(col_name):
     global dataset_selectedfeatures
 
     dataset_selectedfeatures = dataset_selectedfeatures.join(pd.get_dummies(dataset_selectedfeatures[col_name], col_name))
@@ -40,7 +40,7 @@ def test(col_name):
 
 amount_of_cols = len(dataset_selectedfeatures.columns)
 for i in range(amount_of_cols-1, 0, -1):
-    test(dataset_selectedfeatures.columns[i])
+    apply_onehotencoding_tocolumn(dataset_selectedfeatures.columns[i])
 
 
 print(dataset_selectedfeatures.head())
