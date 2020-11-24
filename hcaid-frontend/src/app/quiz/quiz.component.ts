@@ -100,7 +100,7 @@ export class QuizComponent implements OnInit {
   selectedBruise = [1, 0];
   selectedOdor = [1, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  result = '0.0';
+  result = 0.0;
   resultCalculated = false;
 
   constructor(private apiService: ApiService) {}
@@ -157,21 +157,10 @@ export class QuizComponent implements OnInit {
     arr = arr.concat(this.selectedBruise);
     arr = arr.concat(this.selectedOdor);
 
-    /*[
-      0,0,0,0,0,0,0,1,0,
-      0,0,1,0,0,
-      1,0,
-      1,0,0,0,0,0,0,0,0,0,0,0,
-      0,1,0,0,0,0,0,
-      0,0,0,0,1,0,
-      1,0,
-      0,0,1,0,0,0,0,0,0] */
-
     this.apiService.predictChance(arr).subscribe(
       (result) => {
-        result = result;
         result *= 100;
-        this.result = result.toFixed(2);
+        this.result = result;
         if (!this.resultCalculated) {
           this.resultCalculated = true;
         }
@@ -180,6 +169,10 @@ export class QuizComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  numberToString(number: number) {
+    return number.toFixed(2);
   }
 
   ngOnInit() {}

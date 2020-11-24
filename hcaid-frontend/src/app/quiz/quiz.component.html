@@ -7,15 +7,29 @@
     <ng-container *ngFor="let option of options" [ngTemplateOutlet]="inputTemplate"
       [ngTemplateOutletContext]="{id: option[0], title: option[1], items: option[2]}">
     </ng-container>
-
+    <br>
     <div>
-      <dx-button stylingMode="contained" text="Calculate poison" type="normal" [width]="200" (onClick)="getResult()">
+      <dx-button stylingMode="contained" text="Is it safe to eat?" type="normal" (onClick)="getResult()">
       </dx-button>
     </div>
   </div>
   <img src="./assets/general/mushroom_anatomy.jpg" alt="">
 </div>
-<p *ngIf="resultCalculated">Chance of it being edible: {{result}}%</p>
+<div class="result" *ngIf="resultCalculated">
+  <div class="prediction">
+    <p *ngIf="result > 50.0 else inedibleTemplate">It is likely <span class="edible">edible</span>
+      ({{numberToString(result)}}% certainty)</p>
+    <ng-template #inedibleTemplate>
+      <p>It it likely <span class="poison">poisonous</span> ({{numberToString(100.0-result)}}% certainty)</p>
+    </ng-template>
+  </div>
+
+  <div class="tips">
+    <p>For information on how this conclusion was reached, visit the Information page</p>
+  </div>
+</div>
+
+
 
 
 <ng-template #inputTemplate let-id="id" let-title="title" let-items="items">
