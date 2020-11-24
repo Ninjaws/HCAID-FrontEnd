@@ -1,5 +1,18 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.questions {
+  max-width: 600px;
+}
 
 .dx-field {
   display: flex;
   flex-direction: column;
+}
+
+img {
+  width: 400px;
+  height: auto;
 }

@@ -5,52 +5,159 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit {
-
-  sporePrintColors = ['Buff', 'Chocolate', 'Black', 'Brown', 'Orange', 'Green', 'Purple', 'White', 'Yellow'];
+  sporePrintColors = [
+    'Buff',
+    'Chocolate',
+    'Black',
+    'Brown',
+    'Orange',
+    'Green',
+    'Purple',
+    'White',
+    'Yellow',
+  ];
 
   ringTypes = ['Evanescent', 'Flaring', 'Large', 'None', 'Pendant'];
 
   stalkShapes = ['Enlarging', 'Tapering'];
 
-  gillColors = ['Buff', 'Red', 'Gray', 'Chocolate', 'Black', 'Brown', 'Orange', 'Pink', 'Green', 'Purple', 'White', 'Yellow'];
+  gillColors = [
+    'Buff',
+    'Red',
+    'Gray',
+    'Chocolate',
+    'Black',
+    'Brown',
+    'Orange',
+    'Pink',
+    'Green',
+    'Purple',
+    'White',
+    'Yellow',
+  ];
 
-  habitats = ['Woods', 'Grasses', 'Leaves', 'Meadows', 'Paths', 'Urban', 'Waste'];
+  habitats = [
+    'Woods',
+    'Grasses',
+    'Leaves',
+    'Meadows',
+    'Paths',
+    'Urban',
+    'Waste',
+  ];
 
-  populations = ['Abundant', 'Clustered', 'Numerous', 'Scattered', 'Several', 'Solitary'];
+  populations = [
+    'Abundant',
+    'Clustered',
+    'Numerous',
+    'Scattered',
+    'Several',
+    'Solitary',
+  ];
 
   bruises = ['No bruises', 'Has bruises'];
 
-  odors = ['Almond', 'Creosote', 'Foul', 'Anise', 'Musty', 'None', 'Pungent', 'Spicy', 'Fishy'];
+  odors = [
+    'Almond',
+    'Creosote',
+    'Foul',
+    'Anise',
+    'Musty',
+    'None',
+    'Pungent',
+    'Spicy',
+    'Fishy',
+  ];
 
+  options = [
+    [
+      'spore-print-color',
+      'What color is its spore print?',
+      this.sporePrintColors,
+    ],
+    ['ring-type', 'What type of ring does it have?', this.ringTypes],
+    [
+      'stalk-shape',
+      'What kind of shape does its stalk have?',
+      this.stalkShapes,
+    ],
+    ['gill-color', 'What color does the gill have?', this.gillColors],
+    ['habitat', 'What kind of habitat does it live in?', this.habitats],
+    ['population', 'What kind of population does it have?', this.populations],
+    ['bruise', 'Does it have bruises?', this.bruises],
+    ['odor', 'How does it smell?', this.odors],
+  ];
 
-  constructor(private apiService: ApiService)
-  {
-    apiService.predictChance([
-                              0,0,0,0,0,0,0,1,0,
-                              0,0,1,0,0,
-                              1,0,
-                              1,0,0,0,0,0,0,0,0,0,0,0,
-                              0,1,0,0,0,0,0,
-                              0,0,0,0,1,0,
-                              1,0,
-                              0,0,1,0,0,0,0,0,0])
-                              .subscribe(result => {console.log(result); }, error => {console.log(error); });
+  selectedSporePrintColor = [1, 0, 0, 0, 0, 0, 0, 0, 0];
+  selectedRingType = [1, 0, 0, 0, 0];
+  selectedStalkShape = [1, 0];
+  selectedGillColor = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  selectedHabitat = [1, 0, 0, 0, 0, 0, 0];
+  selectedPopulation = [1, 0, 0, 0, 0, 0];
+  selectedBruise = [1, 0];
+  selectedOdor = [1, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  result = '0.0';
+  resultCalculated = false;
+
+  constructor(private apiService: ApiService) {}
+
+  changeSelectedValue(object: any) {
+    console.log(object);
+
+    switch (object.element.id) {
+      case 'spore-print-color':
+        this.selectedSporePrintColor = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.selectedSporePrintColor[
+          this.sporePrintColors.indexOf(object.value)
+        ] = 1;
+        break;
+      case 'ring-type':
+        this.selectedRingType = [0, 0, 0, 0, 0];
+        this.selectedRingType[this.ringTypes.indexOf(object.value)] = 1;
+        break;
+      case 'stalk-shape':
+        this.selectedStalkShape = [0, 0];
+        this.selectedStalkShape[this.stalkShapes.indexOf(object.value)] = 1;
+        break;
+      case 'gill-color':
+        this.selectedGillColor = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.selectedGillColor[this.gillColors.indexOf(object.value)] = 1;
+        break;
+      case 'habitat':
+        this.selectedHabitat = [0, 0, 0, 0, 0, 0, 0];
+        this.selectedHabitat[this.habitats.indexOf(object.value)] = 1;
+        break;
+      case 'population':
+        this.selectedPopulation = [0, 0, 0, 0, 0, 0];
+        this.selectedPopulation[this.populations.indexOf(object.value)] = 1;
+        break;
+      case 'bruise':
+        this.selectedBruise = [0, 0];
+        this.selectedBruise[this.bruises.indexOf(object.value)] = 1;
+        break;
+      case 'odor':
+        this.selectedOdor = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.selectedOdor[this.odors.indexOf(object.value)] = 1;
+        break;
+    }
   }
 
-  convertToArray(): number[]
-  {
-    const arr = [0,0,0]
-    return arr;
-  }
+  getResult() {
+    let arr = [];
+    arr = arr.concat(this.selectedSporePrintColor);
+    arr = arr.concat(this.selectedRingType);
+    arr = arr.concat(this.selectedStalkShape);
+    arr = arr.concat(this.selectedGillColor);
+    arr = arr.concat(this.selectedHabitat);
+    arr = arr.concat(this.selectedPopulation);
+    arr = arr.concat(this.selectedBruise);
+    arr = arr.concat(this.selectedOdor);
 
-  getResult()
-  {
-    const arr = this.convertToArray();
-
-    this.apiService.predictChance([
+    /*[
       0,0,0,0,0,0,0,1,0,
       0,0,1,0,0,
       1,0,
@@ -58,11 +165,22 @@ export class QuizComponent implements OnInit {
       0,1,0,0,0,0,0,
       0,0,0,0,1,0,
       1,0,
-      0,0,1,0,0,0,0,0,0])
-      .subscribe(result => {console.log(result); }, error => {console.log(error); });
+      0,0,1,0,0,0,0,0,0] */
+
+    this.apiService.predictChance(arr).subscribe(
+      (result) => {
+        result = result;
+        result *= 100;
+        this.result = result.toFixed(2);
+        if (!this.resultCalculated) {
+          this.resultCalculated = true;
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

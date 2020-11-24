@@ -1,94 +1,114 @@
 <p>
   Quiz
 </p>
-<div class="dx-field">
-  <div class="dx-field-label">How does it smell? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="odors"
-          [value]="odors[0]"
-          layout="horizontal">
-      </dx-radio-group>
+<div class="wrapper">
+  <div class="questions">
+    <!-- <div class="dx-field">
+      <div class="dx-field-label">How does it smell? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='odor' [items]="odors" [value]="odors[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">What color does the gill have? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='gill-color' [items]="gillColors" [value]="gillColors[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">What type of ring does it have? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='ring-type' [items]="ringTypes" [value]="ringTypes[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div> -->
+
+
+    <!-- <ng-container ></ng-container> -->
+    <!-- ng-template -->
+
+
+    <ng-container *ngFor="let option of options" [ngTemplateOutlet]="inputTemplate"
+      [ngTemplateOutletContext]="{id: option[0], title: option[1], items: option[2]}">
+    </ng-container>
+
+
+
+    <!-- <div class="dx-field">
+      <div class="dx-field-label">What color is its spore print? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='spore-print-color' [items]="sporePrintColors" [value]="sporePrintColors[0]"
+          layout="horizontal" (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">Does it have bruises? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='bruise' [items]="bruises" [value]="bruises[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">What kind of shape does its stalk have? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='stalk-shape' [items]="stalkShapes" [value]="stalkShapes[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">What kind of population does it have? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='population' [items]="populations" [value]="populations[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">What kind of habitat does it live in? </div>
+      <div class="dx-field-value">
+        <dx-radio-group id='habitat' [items]="habitats" [value]="habitats[0]" layout="horizontal"
+          (onValueChanged)="changeSelectedValue($event)">
+        </dx-radio-group>
+      </div>
+    </div> -->
+
+    <div>
+      <dx-button stylingMode="contained" text="Calculate poison" type="normal" [width]="200" (onClick)="getResult()">
+      </dx-button>
+    </div>
   </div>
+  <img src="./assets/general/mushroom_anatomy.jpg" alt="">
 </div>
+<p *ngIf="resultCalculated">Chance of it being edible: {{result}}%</p>
 
-<div class="dx-field">
-  <div class="dx-field-label">What color does the gill have? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="gillColors"
-          [value]="gillColors[0]"
-          layout="horizontal">
+
+
+
+
+
+
+
+<ng-template #inputTemplate let-id="id" let-title="title" let-items="items">
+  <div class="dx-field">
+    <div class="dx-field-label">{{title}}</div>
+    <div class="dx-field-value">
+      <dx-radio-group [id]="id" [items]="items" [value]="items[0]" layout="horizontal"
+        (onValueChanged)="changeSelectedValue($event)">
       </dx-radio-group>
+    </div>
   </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">What type of ring does it have? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="ringTypes"
-          [value]="ringTypes[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">What color is its spore print? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="sporePrintColors"
-          [value]="sporePrintColors[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">Does it have bruises? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="bruises"
-          [value]="bruises[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">What kind of shape does its stalk have? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="stalkShapes"
-          [value]="stalkShapes[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">What kind of population does it have? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="populations"
-          [value]="populations[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-<div class="dx-field">
-  <div class="dx-field-label">What kind of habitat does it live in? </div>
-  <div class="dx-field-value">
-      <dx-radio-group
-          [items]="habitats"
-          [value]="habitats[0]"
-          layout="horizontal">
-      </dx-radio-group>
-  </div>
-</div>
-
-
-
-<p>Change of it being edible:</p>
+</ng-template>

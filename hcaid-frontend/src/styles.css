@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+/* html { background-image: url('./assets/general/mushrooms.jpg'); } */
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+
+body {
+  margin: 0;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+}
+
+router-outlet+* {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-self: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #7f9f7aed;
+  border-radius: 30px;
+}
+
+.dx-field-value {
+  width: 100% !important;
+}
+
+.dx-field-label {
+  width: 100% !important;
+  font-weight: bold;
+  color: #464646;
+}
+
+.dx-theme-generic-typography,
+.dx-field,
+.dx-widget {
+  font-size: 18px;
+}

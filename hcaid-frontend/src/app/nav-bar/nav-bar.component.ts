@@ -5,18 +5,16 @@ import { DxTabsModule } from 'devextreme-angular';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-
-  tabs: string[] = ['Information', 'Mostdeadly'];
+  tabs: string[] = ['Home', 'Information', 'Mostdeadly'];
 
   tabContent: string;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   selectTab(id: any) {
     console.log(id);
@@ -24,5 +22,4 @@ export class NavBarComponent implements OnInit {
     const routerString = '/' + id.itemData.toLowerCase();
     this.router.navigate([routerString]);
   }
-
 }
