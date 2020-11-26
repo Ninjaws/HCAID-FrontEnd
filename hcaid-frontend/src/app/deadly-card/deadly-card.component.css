@@ -1,0 +1,26 @@
+::ng-deep .dx-card {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.space {
+  padding-bottom: 15px;
+  padding-right: 315px;
+}
+
+.name {
+  margin:0;
+  padding:0;
+  line-height: 1.5;
+  text-align: center;
+  height: 30px;
+}
+
+.latin {
+  margin:0;
+  padding:0;
+  line-height: 1.5;
+  text-align: center;
+  height: 30px;
+  font-style: italic;
+}

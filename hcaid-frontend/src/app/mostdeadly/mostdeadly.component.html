@@ -1,11 +1,14 @@
-<p>
-  A few notable mushrooms that are potentially deadly upon consumption<br>
-  Be extremely careful with these!<br>
-  - Deathcap (Amanita phalloides)<br>
-  - Conocybe filaris<br>
-  - Webcaps (Cortinarius species)<br>
-  - Autumn Skullcap (Galerina marginata)<br>
-  - Destroying Angels (Amanita species)<br>
-  - Podostroma cornu-damae<br>
-  - Deadly Dapperling (Lepiota brunneoincaranta)
+<p class="deadly-title">
+  Deadliest Mushrooms
 </p>
+<p class="deadly-subheader">
+  A few notable mushrooms that are potentially deadly upon consumption<br>
+  Be extremely careful with these!
+</p>
+
+
+<div class="container">
+  <div *ngFor="let deadly_mushroom of deadly_mushrooms">
+    <app-deadly-card [name]=deadly_mushroom[0] [latin]=deadly_mushroom[1] [url]=deadly_mushroom[2]></app-deadly-card>
+  </div>
+</div>
