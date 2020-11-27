@@ -19,6 +19,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeadlyCardComponent } from './deadly-card/deadly-card.component';
 import { InfoCardComponent } from './info-card/info-card.component';
+import { GaugesModule } from '@biacsics/ng-canvas-gauges';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { InfoCardComponent } from './info-card/info-card.component';
     DxRadioGroupModule,
     DxTabsModule,
     DxPopupModule,
+    GaugesModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],

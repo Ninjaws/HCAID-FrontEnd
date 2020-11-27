@@ -6,6 +6,10 @@
   display: flex;
   align-items: center;
 }
+.wrapper2 {
+  display: flex;
+  align-items: center;
+}
 
 .questions {
   max-width: 600px;
@@ -52,3 +56,10 @@ background-color: #914604ad;
   color: #790000;
 }
 
+.test {
+  color:  #8b8b8b41
+}
+
+.result-text {
+  margin-top: 0px;
+}

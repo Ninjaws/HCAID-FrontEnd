@@ -101,6 +101,7 @@ export class QuizComponent implements OnInit {
   selectedOdor = [1, 0, 0, 0, 0, 0, 0, 0, 0];
 
   result = 0.0;
+  risk = 'low';
   resultCalculated = false;
 
   constructor(private apiService: ApiService) {}
@@ -160,6 +161,14 @@ export class QuizComponent implements OnInit {
     this.apiService.predictChance(arr).subscribe(
       (result) => {
         result *= 100;
+        if (result < 20) {
+          this.risk = 'high';
+        } else if (result < 80) {
+          this.risk = 'average';
+        } else {
+          this.risk = 'low';
+        }
+
         this.result = result;
         if (!this.resultCalculated) {
           this.resultCalculated = true;
