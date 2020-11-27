@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
   DevExtremeModule,
+  DxPopupModule,
   DxRadioGroupModule,
   DxTabsModule,
 } from 'devextreme-angular';
@@ -17,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeadlyCardComponent } from './deadly-card/deadly-card.component';
+import { InfoCardComponent } from './info-card/info-card.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { DeadlyCardComponent } from './deadly-card/deadly-card.component';
     NavBarComponent,
     QuizComponent,
     DeadlyCardComponent,
+    InfoCardComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { DeadlyCardComponent } from './deadly-card/deadly-card.component';
     DevExtremeModule,
     DxRadioGroupModule,
     DxTabsModule,
+    DxPopupModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],

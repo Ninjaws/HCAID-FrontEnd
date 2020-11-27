@@ -2,20 +2,13 @@
   Information
 </p>
 
-<p>
-  In general, be careful with mushrooms that:<br>
-  -Have a foul odor (strong correlation)<br>
-  -Are located near paths (strong correlation)<br>
-  -Have a buff-colored (light brownish yellow) gill (extreme correlation)<br>
-  <br>
-  <br>
-  Contrary to what you may think, the color of the cap is not a good predictor of whether the mushroom is poisonous<br>
-  As you can see in the heat map below, the amount of edible and poisonous mushrooms are almost the same for every type
-  of color<br>
-  This means that it's a bad idea to assume a mushroom is safe to eat based on its color!<br>
-  <br>
-  In fact, all attributes concerning the cap, such as its shape and surface, are bad predictors for whether the mushroom
-  is poisonous<br>
-  -Shape<br>
-  -Surface
+<p class="info-subtitle">
+  What are strong indicators of a poisonous mushroom?<br>
+  <span class="careful">Be careful when the mushroom...</span>
 </p>
+
+<div class="container">
+  <div *ngFor="let indicator of indicators">
+    <app-info-card [name]=indicator[0] [description]=indicator[1] [url]=indicator[2]></app-info-card>
+  </div>
+</div>

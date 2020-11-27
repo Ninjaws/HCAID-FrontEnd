@@ -1,3 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <router-outlet></router-outlet>
 <img src="./assets/general/mushrooms.jpg" alt="" class="img">
+
+<dx-popup [width]="700" [height]="300" [showTitle]="true" title="Before you get started" [dragEnabled]="false"
+  [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+  <p class="disclaimer">
+    <b>Disclaimer:</b><br>
+    The AI returns a prediction based on a dataset of 8000 mushrooms.<br>
+    However, it is not a replacement for actual expertise.<br>
+    Always consult with an expert before consuming a mushroom you see outside.<br>
+    <br>
+    <b>Privacy:</b><br>
+    No user data (or metadata) will be collected.</p>
+</dx-popup>

@@ -10,23 +10,16 @@
 <div class="disclaimer" *ngIf="!this.quizStarted">
 
   <p class="disclaimer">
-    <b>Disclaimer:</b><br>
-    The AI returns a prediction based on a dataset of 8000 mushrooms.<br>
-    However, it is not a replacement for actual expertise.<br>
-    Always consult with an expert before consuming a mushroom you see outside.<br>
+    Curious which mushrooms are poisonous and which ones aren't?<br>
+    Pick the options that best match the mushroom, and see what the AI thinks. <br>
     <br>
     For more information about what allows you to identify a mushroom as poisonous, visit the <a
       [routerLink]="['/information']">Information</a> page.<br>
-    For information on the deadliest mushrooms, visit the <a [routerLink]="['/mostdeadly']">Deadliest Mushrooms</a>
-    page.<br>
-    Lastly, to take a look at the patterns detected in the dataset, visit the Data analysis page.<br>
-    <br>
-    <b>Privacy:</b><br>
-    No user data (or metadata) will be collected.</p>
+    For a list of the deadliest mushrooms, visit the <a [routerLink]="['/mostdeadly']">Deadliest Mushrooms</a> page.
 
-  <dx-button class="startQuizButton" (click)="startQuiz()" stylingMode="contained" text="Is it safe to eat?"
-    type="normal">Start the quiz
-  </dx-button>
+    <dx-button class="startQuizButton" (click)="startQuiz()" stylingMode="contained" text="Is it safe to eat?"
+      type="normal">Let's get started
+    </dx-button>
 </div>
 
 <div class="quiz" *ngIf="this.quizStarted">

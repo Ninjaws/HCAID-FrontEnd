@@ -35,6 +35,8 @@ router-outlet+* {
 
 .dx-theme-generic-typography,
 .dx-field,
-.dx-widget {
+.dx-widget,
+.dx-popup-content {
   font-size: 18px;
 }
+

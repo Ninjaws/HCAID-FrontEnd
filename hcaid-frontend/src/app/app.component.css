@@ -7,3 +7,13 @@
   object-fit: cover;
   z-index: -1;
 }
+
+.disclaimer {
+  text-justify: wrap;
+  margin: 0px;
+}
+
+::ng-deep .dx-overlay-content {
+  background: #995200a1 !important;
+  border-radius: 30px !important;
+}
