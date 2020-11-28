@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DxRadioGroupModule } from 'devextreme-angular';
-import { ApiService } from '../api.service';
+import { PredictService } from '../predict.service';
 
 @Component({
   selector: 'app-quiz',
@@ -104,7 +104,7 @@ export class QuizComponent implements OnInit {
   risk = 'low';
   resultCalculated = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private predictService: PredictService) {}
 
   changeSelectedValue(object: any) {
     console.log(object);
@@ -158,7 +158,7 @@ export class QuizComponent implements OnInit {
     arr = arr.concat(this.selectedBruise);
     arr = arr.concat(this.selectedOdor);
 
-    this.apiService.predictChance(arr).subscribe(
+    this.predictService.predict(arr).then(
       (result) => {
         result *= 100;
         if (result < 20) {

@@ -6,11 +6,6 @@
   display: flex;
   align-items: center;
 }
-.wrapper2 {
-  display: flex;
-  align-items: center;
-}
-
 .questions {
   max-width: 600px;
 }
@@ -38,9 +33,10 @@ background-color: #914604ad;
 }
 
 .prediction {
-  font-style: italic;
-  font-weight: bold;
-  font-size: xx-large;
+  display:flex;
+
+  justify-content: start;
+  align-items: center;
 }
 
 .tips {
@@ -61,5 +57,21 @@ background-color: #914604ad;
 }
 
 .result-text {
+  font-style: italic;
+  font-weight: bold;
+  font-size: xx-large;
+
   margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.gauge {
+  height: 260px;
+  overflow-y: hidden;
+}
+
+.chance {
+  font-style: italic;
+  font-size: x-large;
+  margin-top: 0;
 }

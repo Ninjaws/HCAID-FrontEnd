@@ -1,6 +1,11 @@
 import tensorflow as tf
+import tensorflowjs as tfjs
 
 model = tf.keras.models.load_model('mushroom_predictor.h5')
+
+
+tfjs.converters.save_keras_model(model, "tfmodel")
+
 
 
 f = ord('f')
@@ -59,4 +64,4 @@ shroom = [[
 ]]
 # [[f, f, v, p, b, e, l, w]]
 
-print(model.predict(shroom))
+#print(model.predict(shroom))

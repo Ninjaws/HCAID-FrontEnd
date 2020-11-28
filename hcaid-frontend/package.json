@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
     "@biacsics/ng-canvas-gauges": "^6.0.7",
+    "@tensorflow/tfjs": "^2.7.0",
     "devextreme": "20.1.8",
     "devextreme-angular": "20.1.8",
     "firebase": "^8.0.2",
