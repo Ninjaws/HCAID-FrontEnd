@@ -25,6 +25,7 @@
     "devextreme": "20.1.8",
     "devextreme-angular": "20.1.8",
     "firebase": "^8.0.2",
+    "ngx-star-rating": "0.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

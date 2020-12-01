@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* html { background-image: url('./assets/general/mushrooms.jpg'); } */
 /*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 
 body {

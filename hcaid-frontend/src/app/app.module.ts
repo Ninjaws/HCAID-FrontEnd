@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeadlyCardComponent } from './deadly-card/deadly-card.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { GaugesModule } from '@biacsics/ng-canvas-gauges';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { GaugesModule } from '@biacsics/ng-canvas-gauges';
     QuizComponent,
     DeadlyCardComponent,
     InfoCardComponent,
+    FeedbackComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ import { GaugesModule } from '@biacsics/ng-canvas-gauges';
     GaugesModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    NgxStarRatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

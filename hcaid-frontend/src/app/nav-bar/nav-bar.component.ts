@@ -32,6 +32,10 @@ export class NavBarComponent implements OnInit {
       text: 'Deadliest Mushrooms',
       url: 'mostdeadly',
     },
+    {
+      text: 'Feedback',
+      url: 'feedback',
+    },
   ];
 
   tabContent: string;
