@@ -1047,6 +1047,9 @@ copy of the Program in return for a fee.
                      END OF TERMS AND CONDITIONS
 
 
+ngx-star-rating
+MIT
+
 quill
 BSD-3-Clause
 Copyright (c) 2014, Jason Chen

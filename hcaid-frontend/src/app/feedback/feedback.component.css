@@ -16,11 +16,6 @@ a {
   font-weight: bold;
 }
 
-img {
-  border-radius: 10px;
-  opacity: 100%;
-}
-
 .feedback-image {
   display:flex;
   align-items: center;
