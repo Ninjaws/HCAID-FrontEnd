@@ -162,7 +162,7 @@ export class QuizComponent implements OnInit {
         // Checking for optimal input
         if (object.value === 'Tapering') {
           this.suboptimalValues.splice(
-            this.suboptimalValues.indexOf('stalk-type'),
+            this.suboptimalValues.indexOf('stalk-shape'),
             1
           );
         } else {
@@ -320,7 +320,7 @@ export class QuizComponent implements OnInit {
         this.recommendations.push(' the population to Abudant');
       }
       if (value === 'bruise') {
-        this.recommendations.push(' the bruises to No bruises');
+        this.recommendations.push(' the bruises to Has bruises');
       }
       if (value === 'odor') {
         this.recommendations.push(' the odor to None');
