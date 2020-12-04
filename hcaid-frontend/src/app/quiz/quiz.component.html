@@ -40,7 +40,10 @@
     </div>
   </div>
 
-  <p class="tips">For information on how this conclusion was reached, visit the Information page</p>
+  <p class="recommendation" *ngIf="risk!='low'">Hint: To lower the risk, try changing {{hint}}</p>
+
+  <p class="info">For information on how this conclusion was reached, visit the <a
+      [routerLink]="['/information']">Information</a> page</p>
 </div>
 
 

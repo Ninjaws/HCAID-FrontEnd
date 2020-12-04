@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { rand } from '@tensorflow/tfjs';
 import { DxRadioGroupModule } from 'devextreme-angular';
 import { PredictService } from '../predict.service';
 
@@ -104,10 +105,19 @@ export class QuizComponent implements OnInit {
   risk = 'low';
   resultCalculated = false;
 
+  // All inputs that dont lead to the lowest possible poison index
+  suboptimalValues = [];
+  // All recommendations, pick one randomly for the hint
+  recommendations = [];
+  hint = '';
+  //Whether the user has changed a value for the first time
+  valueChanged = false;
+
   constructor(private predictService: PredictService) {}
 
   changeSelectedValue(object: any) {
-    console.log(object);
+    this.valueChanged = true;
+    // this.suboptimalValues = [];
 
     switch (object.element.id) {
       case 'spore-print-color':
@@ -115,34 +125,131 @@ export class QuizComponent implements OnInit {
         this.selectedSporePrintColor[
           this.sporePrintColors.indexOf(object.value)
         ] = 1;
+
+        // Checking for optimal input
+        if (object.value === 'Black' || object.value === 'Brown') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('spore-print-color'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('spore-print-color') === -1) {
+            this.suboptimalValues.push('spore-print-color');
+          }
+        }
+
         break;
       case 'ring-type':
         this.selectedRingType = [0, 0, 0, 0, 0];
         this.selectedRingType[this.ringTypes.indexOf(object.value)] = 1;
+
+        // Checking for optimal input
+        if (object.value === 'Pendant') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('ring-type'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('ring-type') === -1) {
+            this.suboptimalValues.push('ring-type');
+          }
+        }
         break;
       case 'stalk-shape':
         this.selectedStalkShape = [0, 0];
         this.selectedStalkShape[this.stalkShapes.indexOf(object.value)] = 1;
+
+        // Checking for optimal input
+        if (object.value === 'Tapering') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('stalk-type'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('stalk-shape') === -1) {
+            this.suboptimalValues.push('stalk-shape');
+          }
+        }
         break;
       case 'gill-color':
         this.selectedGillColor = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.selectedGillColor[this.gillColors.indexOf(object.value)] = 1;
+
+        // Checking for optimal input
+        if (
+          object.value === 'Brown' ||
+          object.value === 'Purple' ||
+          object.value === 'White'
+        ) {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('gill-color'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('gill-color') === -1) {
+            this.suboptimalValues.push('gill-color');
+          }
+        }
         break;
       case 'habitat':
         this.selectedHabitat = [0, 0, 0, 0, 0, 0, 0];
         this.selectedHabitat[this.habitats.indexOf(object.value)] = 1;
+        // Checking for optimal input
+        if (object.value === 'Woods' || object.value === 'Waste') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('habitat'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('habitat') === -1) {
+            this.suboptimalValues.push('habitat');
+          }
+        }
         break;
       case 'population':
         this.selectedPopulation = [0, 0, 0, 0, 0, 0];
         this.selectedPopulation[this.populations.indexOf(object.value)] = 1;
+        // Checking for optimal input
+        if (object.value === 'Abundant') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('population'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('population') === -1) {
+            this.suboptimalValues.push('population');
+          }
+        }
         break;
       case 'bruise':
         this.selectedBruise = [0, 0];
         this.selectedBruise[this.bruises.indexOf(object.value)] = 1;
+        // Checking for optimal input
+        if (object.value === 'Has bruises') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('bruise'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('bruise') === -1) {
+            this.suboptimalValues.push('bruise');
+          }
+        }
         break;
       case 'odor':
         this.selectedOdor = [0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.selectedOdor[this.odors.indexOf(object.value)] = 1;
+        // Checking for optimal input
+        if (object.value === 'None') {
+          this.suboptimalValues.splice(
+            this.suboptimalValues.indexOf('odor'),
+            1
+          );
+        } else {
+          if (this.suboptimalValues.indexOf('odor') === -1) {
+            this.suboptimalValues.push('odor');
+          }
+        }
         break;
     }
   }
@@ -169,6 +276,8 @@ export class QuizComponent implements OnInit {
           this.risk = 'low';
         }
 
+        this.getRecommendations();
+
         this.result = result;
         if (!this.resultCalculated) {
           this.resultCalculated = true;
@@ -182,6 +291,49 @@ export class QuizComponent implements OnInit {
 
   numberToString(number: number) {
     return number.toFixed(2);
+  }
+
+  getRecommendations() {
+    this.recommendations = [];
+
+    // Only give recommendations if the risk is reasonably high
+    if (this.risk === 'low') {
+      return;
+    }
+    for (const value of this.suboptimalValues) {
+      if (value === 'spore-print-color') {
+        this.recommendations.push(' the spore-print color to Black or Brown');
+      }
+      if (value === 'ring-type') {
+        this.recommendations.push(' the ring-type to Pendant');
+      }
+      if (value === 'stalk-shape') {
+        this.recommendations.push(' the stalk-shape to Tapering');
+      }
+      if (value === 'gill-color') {
+        this.recommendations.push(' the gill-color to Brown, Purple or White');
+      }
+      if (value === 'habitat') {
+        this.recommendations.push(' the habitat to Woods or Waste');
+      }
+      if (value === 'population') {
+        this.recommendations.push(' the population to Abudant');
+      }
+      if (value === 'bruise') {
+        this.recommendations.push(' the bruises to No bruises');
+      }
+      if (value === 'odor') {
+        this.recommendations.push(' the odor to None');
+      }
+    }
+
+    if (this.recommendations.length === 0) {
+      this.recommendations.push(' more values');
+    }
+
+    const index = Math.floor(Math.random() * this.recommendations.length);
+
+    this.hint = this.recommendations[index];
   }
 
   ngOnInit() {}

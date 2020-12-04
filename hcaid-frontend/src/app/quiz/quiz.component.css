@@ -40,8 +40,14 @@ background-color: #914604ad;
 }
 
 .tips {
-  font-size: 24px;
+  font-size: 26px;
   margin: 0px;
+}
+
+.info {
+  font-style: italic;
+  font-size: 24px;
+  margin-bottom: 0px;
 }
 
 .edible {
@@ -52,9 +58,6 @@ background-color: #914604ad;
   color: #790000;
 }
 
-.test {
-  color:  #8b8b8b41
-}
 
 .result-text {
   font-style: italic;
@@ -73,5 +76,15 @@ background-color: #914604ad;
 .chance {
   font-style: italic;
   font-size: x-large;
+  margin-top: 0;
+}
+
+a {
+  color: rgba(0, 88, 0, 0.925);
+  font-weight: bold;
+}
+
+.recommendation{
+  font-size: 26px;
   margin-top: 0;
 }
